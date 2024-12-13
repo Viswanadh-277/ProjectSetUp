@@ -166,4 +166,11 @@ public struct CoverImageData: Codable {
   let url: String?
   let imageKey: String?
   let mediaName: String?
+  
+  public init(status: Int? = nil, url: String? = nil, imageKey: String? = nil, mediaName: String? = nil) {
+    self.status = status
+    self.url = url
+    self.imageKey = imageKey
+    self.mediaName = mediaName
+  }
 }

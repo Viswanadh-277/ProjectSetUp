@@ -6,7 +6,7 @@ enum URLType: Int {
   case local
 }
 
-let defaultToken   = "6fc78bad2f4a1a264be5b019d9e2ec3d"
+let defaultToken = "6fc78bad2f4a1a264be5b019d9e2ec3d"
 let environment: URLType = .dev
 
 var baseUrl: URL {

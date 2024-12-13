@@ -25,7 +25,7 @@ public class RequestFactoryImpl: RequestFactory {
         let boundary = "Boundary-\(UUID().uuidString)"
         request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: API.Header.contentType)
         request.addValue(token, forHTTPHeaderField: API.Field.authorization)
-        request.httpBody = try? createMultipartBody(with: input, fileKey: input.fileKey, fileName: input.fileName, mimeType: input.mimeType, fileData: input.fileData, boundary: boundary)
+        request.httpBody = try? createMultipartBody(with: input, fieldName: input.fieldName, fileName: input.fileName, mimeType: input.mimeType, fileData: input.fileData, boundary: boundary)
         request.method = method
         
         return request
@@ -43,12 +43,12 @@ public class RequestFactoryImpl: RequestFactory {
     }
   }
   
-  private func createMultipartBody<T: Encodable>(with input: MultipartInput<T>, fileKey: String, fileName: String, mimeType: String, fileData: Data, boundary: String) throws -> Data {
+  private func createMultipartBody<T: Encodable>(with input: MultipartInput<T>, fieldName: String, fileName: String, mimeType: String, fileData: Data, boundary: String) throws -> Data {
     var body = Data()
     
     // Convert the generic parameters into a dictionary
     let encoder = JSONEncoder()
-    encoder.keyEncodingStrategy = .convertToSnakeCase // Optional: Change key encoding strategy
+//    encoder.keyEncodingStrategy = .convertToSnakeCase // Optional: Change key encoding strategy
     let parametersData = try encoder.encode(input.parameters)
     let parametersDict = try JSONSerialization.jsonObject(with: parametersData, options: []) as? [String: Any] ?? [:]
     
@@ -61,7 +61,7 @@ public class RequestFactoryImpl: RequestFactory {
     
     // Append file data
     body.append(Data("--\(boundary)\r\n".utf8))
-    body.append(Data("Content-Disposition: form-data; name=\"\(fileKey)\"; filename=\"\(fileName)\"\r\n".utf8))
+    body.append(Data("Content-Disposition: form-data; name=\"\(fieldName)\"; filename=\"\(fileName)\"\r\n".utf8))
     body.append(Data("Content-Type: \(mimeType)\r\n\r\n".utf8))
     body.append(fileData)
     body.append(Data("\r\n".utf8))

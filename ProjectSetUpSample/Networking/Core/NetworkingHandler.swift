@@ -58,3 +58,13 @@ public class NetworkingHandlerImpl: NetworkingHandler {
     }
   }
 }
+
+private func responseBeforeDecode(data: Data) -> String? {
+  if let prettyPrintedString = try? JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed),
+    let prettyPrintedData = try? JSONSerialization.data(withJSONObject: prettyPrintedString, options: .prettyPrinted),
+    let prettyPrintedStringResult = String(data: prettyPrintedData, encoding: .utf8) {
+    return prettyPrintedStringResult
+  } else {
+    return nil
+  }
+}

@@ -22,6 +22,8 @@
 		0B5442032D070C6E00C2D9FA /* GVAndGM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5442022D070C6E00C2D9FA /* GVAndGM.swift */; };
 		0B5442062D070EDA00C2D9FA /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5442052D070EDA00C2D9FA /* UIViewController.swift */; };
 		0B5442082D0725D500C2D9FA /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5442072D0725D500C2D9FA /* Extensions.swift */; };
+		0BA0E94B2D0C3C0C00488F9E /* LoginSetUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA0E94A2D0C3C0C00488F9E /* LoginSetUp.swift */; };
+		0BA0E94D2D0C423B00488F9E /* LoginViewAPIs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA0E94C2D0C423B00488F9E /* LoginViewAPIs.swift */; };
 		0BC7161C2CFAD46A005055AA /* RegistrationAPIModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC7161B2CFAD469005055AA /* RegistrationAPIModule.swift */; };
 		0BC7161E2CFB285D005055AA /* MultiPartRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC7161D2CFB285D005055AA /* MultiPartRequest.swift */; };
 		0BFE84802CE5CD8200F262BC /* RequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFE84752CE5CD8200F262BC /* RequestFactory.swift */; };
@@ -80,6 +82,8 @@
 		0B5442052D070EDA00C2D9FA /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		0B5442072D0725D500C2D9FA /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		0B806E502CDF9109006003F3 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = SOURCE_ROOT; };
+		0BA0E94A2D0C3C0C00488F9E /* LoginSetUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSetUp.swift; sourceTree = "<group>"; };
+		0BA0E94C2D0C423B00488F9E /* LoginViewAPIs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewAPIs.swift; sourceTree = "<group>"; };
 		0BC7161B2CFAD469005055AA /* RegistrationAPIModule.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = RegistrationAPIModule.swift; sourceTree = "<group>"; tabWidth = 2; };
 		0BC7161D2CFB285D005055AA /* MultiPartRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiPartRequest.swift; sourceTree = "<group>"; };
 		0BFE84742CE5CD8200F262BC /* NetworkingHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingHandler.swift; sourceTree = "<group>"; };
@@ -188,7 +192,7 @@
 		0B35FBDF2CDF8076009E1CBE /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				0B3584122CDF7FAD009C2AA4 /* LoginView.swift */,
+				0BA0E9492D0C3BE600488F9E /* Login */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -239,6 +243,16 @@
 				0B5442072D0725D500C2D9FA /* Extensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		0BA0E9492D0C3BE600488F9E /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				0B3584122CDF7FAD009C2AA4 /* LoginView.swift */,
+				0BA0E94A2D0C3C0C00488F9E /* LoginSetUp.swift */,
+				0BA0E94C2D0C423B00488F9E /* LoginViewAPIs.swift */,
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 		0BC7161A2CFAD439005055AA /* API */ = {
@@ -444,6 +458,7 @@
 				0B3584142CDF7FAD009C2AA4 /* AppDelegate.swift in Sources */,
 				0B3584152CDF7FAD009C2AA4 /* SceneDelegate.swift in Sources */,
 				0B36C7152D08587D00DC28F7 /* UploadFileRequestInput.swift in Sources */,
+				0BA0E94B2D0C3C0C00488F9E /* LoginSetUp.swift in Sources */,
 				0B3584162CDF7FAD009C2AA4 /* LoginView.swift in Sources */,
 				0BFE84B22CE5D8C100F262BC /* APIEndpoints.swift in Sources */,
 				0BFE84802CE5CD8200F262BC /* RequestFactory.swift in Sources */,
@@ -451,6 +466,7 @@
 				0BFE84992CE5CD9000F262BC /* EmptyResponse.swift in Sources */,
 				0BFE849E2CE5CD9000F262BC /* ResponseContainer.swift in Sources */,
 				0B36C7112D08366E00DC28F7 /* Enums.swift in Sources */,
+				0BA0E94D2D0C423B00488F9E /* LoginViewAPIs.swift in Sources */,
 				0BFE84B72CE5F01700F262BC /* LoginRequest.swift in Sources */,
 				0B5442082D0725D500C2D9FA /* Extensions.swift in Sources */,
 				0BFE84832CE5CD8200F262BC /* NetworkResult.swift in Sources */,
