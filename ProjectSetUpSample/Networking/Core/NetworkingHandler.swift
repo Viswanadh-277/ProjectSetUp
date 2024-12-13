@@ -1,7 +1,7 @@
 import Foundation
 
 public protocol NetworkingHandler {
-  func request<T: Codable, R: Decodable>(_ route: Route<T>, expecting type: R.Type, endpoint: Endpoint, token: String, method: HTTPMethod) async -> NetworkTask<R>
+  func request<T: Encodable, R: Decodable>(_ route: Route<T>, endpoint: Endpoint, token: String, method: HTTPMethod) async -> NetworkTask<R>
 }
 
 public class NetworkingHandlerImpl: NetworkingHandler {
@@ -13,7 +13,7 @@ public class NetworkingHandlerImpl: NetworkingHandler {
     self.session = session
   }
   
-  public func request<T: Codable, R: Decodable>(_ route: Route<T>, expecting type: R.Type, endpoint: Endpoint, token: String, method: HTTPMethod) async -> NetworkTask<R> {
+  public func request<T: Encodable, R: Decodable>(_ route: Route<T>, endpoint: Endpoint, token: String, method: HTTPMethod) async -> NetworkTask<R> {
     let request = requestFactory.request(for: route, token: token, method: method, endPoint: endpoint)
     
     let task = Task { () -> R in
@@ -21,18 +21,18 @@ public class NetworkingHandlerImpl: NetworkingHandler {
         case let .uploadFiles(input):
           let result = try await session.upload(for: request, fromFile: input.localSource)
           
-          return try await handleResponse(data: result.0, response: result.1, expecting: type)
+          return try await handleResponse(data: result.0, response: result.1)
         default:
           let result = try await session.data(for: request)
           
-          return try await handleResponse(data: result.0, response: result.1, expecting: type)
+          return try await handleResponse(data: result.0, response: result.1)
       }
     }
     
     return task
   }
   
-  private func handleResponse<R: Decodable>(data: Data, response: URLResponse?, expecting type: R.Type) async throws -> R {
+  private func handleResponse<R: Decodable>(data: Data, response: URLResponse?) async throws -> R {
     guard let response = response as? HTTPURLResponse else { throw APIError.unknown() }
     
     guard response.isSuccess else {
@@ -40,19 +40,19 @@ public class NetworkingHandlerImpl: NetworkingHandler {
     }
     
     do {
-      let data = try parseResponse(data: data, expecting: type)
+      let data: R = try parseResponse(data: data)
       return data
     } catch {
       throw error
     }
   }
   
-  private func parseResponse<R: Decodable>(data: Data, expecting type: R.Type) throws -> R {
+  private func parseResponse<R: Decodable>(data: Data) throws -> R {
     let decoder = JSONDecoder()
     decoder.keyDecodingStrategy = .convertFromSnakeCase
     
     do {
-      return try decoder.decode(type, from: data)
+      return try decoder.decode(R.self, from: data)
     } catch {
       throw error
     }

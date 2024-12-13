@@ -1,4 +1,4 @@
-public struct LoginRequest: Codable {
+public struct LoginRequest: Encodable {
   let emailOrPhone: String
   let password: String
   let type: Int

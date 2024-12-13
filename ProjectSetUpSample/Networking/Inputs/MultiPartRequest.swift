@@ -1,6 +1,6 @@
 import Foundation
 
-public struct MultipartInput<T: Encodable> {
+public struct MultipartInput<T> {
   let parameters: T
   let fileKey: String
   let fileName: String

@@ -1,4 +1,4 @@
-public enum Route<T: Encodable> {
+public enum Route<T> {
   case parameters(T)
   case multipart(MultipartInput<T>)
   case uploadFiles(UploadFileRequestInput)

@@ -13,8 +13,8 @@ public struct RegistrationAPIModuleImpl: RegistrationAPIModule {
   }
   
   public func login(input: LoginRequest) async -> NetworkResult<ResponseContainer<LoginResponseData>> {
-    let type = ResponseContainer<LoginResponseData>.self
-    let task = await networkingHandler.request(.parameters(input), expecting: type, endpoint: .login, token: defaultToken, method: .post)
+    let route = Route<LoginRequest>.parameters(input)
+    let task: NetworkTask<ResponseContainer<LoginResponseData>> = await networkingHandler.request(route, endpoint: .login, token: defaultToken, method: .post)
     
     switch await task.networkResult {
       case let .success(response):
@@ -25,9 +25,9 @@ public struct RegistrationAPIModuleImpl: RegistrationAPIModule {
   }
   
   public func profileImage(input: MultipartInput<CoverImageRequest>) async -> NetworkResult<ResponseContainer<CoverImageData>> {
-    let type = ResponseContainer<CoverImageData>.self
-    let task = await networkingHandler.request(.multipart(input), expecting: type, endpoint: .profileImage, token: defaultToken, method: .post)
-    
+    let route = Route<CoverImageRequest>.multipart(input)
+    let task: NetworkTask<ResponseContainer<CoverImageData>> = await networkingHandler.request(route, endpoint: .profileImage, token: defaultToken, method: .post)
+  
     switch await task.networkResult {
       case let .success(response):
         return .success(response)
