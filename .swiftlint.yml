@@ -1,0 +1,44 @@
+disabled_rules:
+   - redundant_string_enum_value
+   - unneeded_synthesized_initializer
+   
+opt_in_rules:
+   - file_header
+   - indentation_width
+   - vertical_whitespace_opening_braces
+   - vertical_whitespace_closing_braces
+
+line_length: 250
+file_length: 660
+function_parameter_count: 10
+function_body_length: 100
+
+identifier_name:
+   allowed_symbols: ["_"]
+   max_length: 50
+   excluded:
+      - id
+      - in
+      - ok
+
+trailing_whitespace:
+   ignores_empty_lines: true
+
+switch_case_alignment:
+   severity: warning
+   indented_cases: true
+   ignore_one_liners: false
+
+file_header:
+   forbidden_pattern: "//( |.*)$" #match comment sign with or without text
+
+indentation_width:
+   severity: error
+   indentation_width: 2
+   include_comments: false
+
+trailing_comma:
+   mandatory_comma: true
+
+type_name:
+   max_length: 50
