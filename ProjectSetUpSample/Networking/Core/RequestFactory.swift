@@ -15,7 +15,8 @@ public class RequestFactoryImpl: RequestFactory {
         request.addValue(token, forHTTPHeaderField: API.Field.authorization)
         request.httpBody = try? JSONEncoder().encode(input)
         request.method = method
-        
+        PrintLogger.log(type: .apiUrl, message: url.absoluteString)
+        PrintLogger.modelLog(input, type: .inputParamenters)
         return request
         
       case let .multipart(input):
@@ -27,7 +28,7 @@ public class RequestFactoryImpl: RequestFactory {
         request.addValue(token, forHTTPHeaderField: API.Field.authorization)
         request.httpBody = try? createMultipartBody(with: input, fieldName: input.fieldName, fileName: input.fileName, mimeType: input.mimeType, fileData: input.fileData, boundary: boundary)
         request.method = method
-        
+        PrintLogger.log(type: .apiUrl, message: url.absoluteString)
         return request
         
       case let .uploadFiles(input):
@@ -46,9 +47,11 @@ public class RequestFactoryImpl: RequestFactory {
   private func createMultipartBody<T: Encodable>(with input: MultipartInput<T>, fieldName: String, fileName: String, mimeType: String, fileData: Data, boundary: String) throws -> Data {
     var body = Data()
     
-    // Convert the generic parameters into a dictionary
+    /// Convert the generic parameters into a dictionary
+    /// Optional: Change key encoding strategy
+    /// `encoder.keyEncodingStrategy = .convertToSnakeCase`
+    
     let encoder = JSONEncoder()
-//    encoder.keyEncodingStrategy = .convertToSnakeCase // Optional: Change key encoding strategy
     let parametersData = try encoder.encode(input.parameters)
     let parametersDict = try JSONSerialization.jsonObject(with: parametersData, options: []) as? [String: Any] ?? [:]
     

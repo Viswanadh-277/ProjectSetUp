@@ -26,7 +26,7 @@ public struct RegistrationAPIModuleImpl: RegistrationAPIModule {
   
   public func profileImage(input: MultipartInput<CoverImageRequest>) async -> NetworkResult<ResponseContainer<CoverImageData>> {
     let route = Route<CoverImageRequest>.multipart(input)
-    let task: NetworkTask<ResponseContainer<CoverImageData>> = await networkingHandler.request(route, endpoint: .profileImage, token: authToken ?? "", method: .post)
+    let task: NetworkTask<ResponseContainer<CoverImageData>> = await networkingHandler.request(route, endpoint: .profileImage, token: authToken.orEmpty, method: .post)
   
     switch await task.networkResult {
       case let .success(response):

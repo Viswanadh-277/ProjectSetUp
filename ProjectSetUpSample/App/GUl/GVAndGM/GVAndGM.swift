@@ -6,7 +6,7 @@ var device_Token: String? {
   }
   set {
     UserDefaults.standard.set(newValue, forKey: "DeviceToken")
-    print("Device token updated: \(newValue ?? "nil")")
+    PrintLogger.log(type: .deviceToken, message: newValue.orEmpty)
   }
 }
 
@@ -16,6 +16,6 @@ var authToken: String? {
   }
   set {
     UserDefaults.standard.set(newValue, forKey: "AuthToken")
-    print("Auth token updated: \(newValue ?? "nil")")
+    PrintLogger.log(type: .authToken, message: newValue.orEmpty)
   }
 }
