@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 77;
+	objectVersion = 63;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -417,6 +417,7 @@
 				};
 			};
 			buildConfigurationList = 0B3583AE2CDF7F91009C2AA4 /* Build configuration list for PBXProject "ProjectSetUpSample" */;
+			compatibilityVersion = "Xcode 15.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -428,7 +429,6 @@
 			packageReferences = (
 				0B806E422CDF861A006003F3 /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */,
 			);
-			preferredProjectObjectVersion = 77;
 			productRefGroup = 0B3583B42CDF7F91009C2AA4 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
